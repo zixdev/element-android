@@ -4,7 +4,7 @@
     <!-- "app_name" is now defined in build.gradle -->
 
     <!-- server urls -->
-    <string name="matrix_org_server_url" translatable="false">https://matrix.org</string>
+    <string name="matrix_org_server_url" translatable="false">https://matrix.superhero.com</string>
 
     <!-- Rageshake configuration -->
     <string name="bug_report_url" translatable="false">https://riot.im/bugreports/submit</string>
@@ -36,10 +36,9 @@
     <!-- Permalink config -->
     <string-array name="permalink_supported_hosts" translatable="false">
         <!-- Regular Element Web instance -->
-        <item>app.element.io</item>
+        <item>chat.superhero.com</item>
         <!-- Other known instances of Element Web -->
-        <item>develop.element.io</item>
-        <item>staging.element.io</item>
+        <item>chat.superhero.chat</item>
         <!-- Previous Web instance, kept for compatibility reason -->
         <item>riot.im</item>
     </string-array>
