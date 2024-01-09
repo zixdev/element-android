@@ -224,6 +224,24 @@ class RoomProfileFragment :
             } else {
                 headerViews.roomProfileNameView.text = it.displayName
                 views.matrixProfileToolbarTitleView.text = it.displayName
+
+                if (it.displayName.startsWith("[TG]")) {
+                    headerViews.roomProfileNameView.text = it.displayName.substring(4)
+                    views.matrixProfileToolbarTitleView.text = it.displayName.substring(4)
+                    
+                    headerViews.tokenGatedRoomDecorationImageView.setImageResource(R.drawable.ic_shield_trusted)
+                    // TODO: Add toolbar icon
+                    // views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.ic_shield_trusted)
+                }
+
+                if (it.displayName.startsWith("$")) {
+                    headerViews.roomProfileNameView.text = it.displayName.substring(1)
+                    views.matrixProfileToolbarTitleView.text = it.displayName.substring(1)
+                    headerViews.communityRoomDecorationImageView.setImageResource(R.drawable.ic_shield_trusted)
+                    // TODO: Add toolbar icon
+                    // views.communityRoomDecorationToolbarImageView.setImageResource(R.drawable.ic_shield_trusted)
+                }
+
                 headerViews.roomProfileAliasView.setTextOrHide(it.canonicalAlias)
                 val matrixItem = it.toMatrixItem()
                 avatarRenderer.render(matrixItem, headerViews.roomProfileAvatarView)
