@@ -42,6 +42,7 @@ import org.matrix.android.sdk.api.session.events.model.toModel
 import org.matrix.android.sdk.api.session.room.model.RoomMemberSummary
 import org.matrix.android.sdk.api.session.room.model.RoomThirdPartyInviteContent
 import org.matrix.android.sdk.api.util.toMatrixItem
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -148,7 +149,14 @@ class RoomMemberListFragment :
 
     private fun renderRoomSummary(state: RoomMemberListViewState) {
         state.roomSummary()?.let {
-            views.roomSettingGeneric.roomSettingsToolbarTitleView.text = it.displayName
+            if (it.displayName.startsWith("[TG]")){
+                views.roomSettingGeneric.roomSettingsToolbarTitleView.text = it.displayName.substring(4)
+                views.roomSettingGeneric.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+
+            }else{
+                views.roomSettingGeneric.roomSettingsToolbarTitleView.text = it.displayName
+
+            }
             avatarRenderer.render(it.toMatrixItem(), views.roomSettingGeneric.roomSettingsToolbarAvatarImageView)
             views.roomSettingGeneric.roomSettingsDecorationToolbarAvatarImageView.render(it.roomEncryptionTrustLevel)
         }

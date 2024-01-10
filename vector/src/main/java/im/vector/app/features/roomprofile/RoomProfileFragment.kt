@@ -121,7 +121,8 @@ class RoomProfileFragment :
                 listOf(
                         views.matrixProfileToolbarAvatarImageView,
                         views.matrixProfileToolbarTitleView,
-                        views.matrixProfileDecorationToolbarAvatarImageView
+                        views.matrixProfileDecorationToolbarAvatarImageView,
+                        views.tokenGatedDecorationToolbarImageView
                 )
         )
         views.matrixProfileAppBarLayout.addOnOffsetChangedListener(appBarStateChangeListener)
@@ -229,17 +230,15 @@ class RoomProfileFragment :
                     headerViews.roomProfileNameView.text = it.displayName.substring(4)
                     views.matrixProfileToolbarTitleView.text = it.displayName.substring(4)
                     
-                    headerViews.tokenGatedRoomDecorationImageView.setImageResource(R.drawable.ic_shield_trusted)
-                    // TODO: Add toolbar icon
-                    // views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.ic_shield_trusted)
+                    headerViews.tokenGatedRoomDecorationImageView.setImageResource(R.drawable.tokengated_room)
+                    views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
                 }
 
                 if (it.displayName.startsWith("$")) {
                     headerViews.roomProfileNameView.text = it.displayName.substring(1)
                     views.matrixProfileToolbarTitleView.text = it.displayName.substring(1)
-                    headerViews.communityRoomDecorationImageView.setImageResource(R.drawable.ic_shield_trusted)
-                    // TODO: Add toolbar icon
-                    // views.communityRoomDecorationToolbarImageView.setImageResource(R.drawable.ic_shield_trusted)
+                    headerViews.communityRoomDecorationImageView.setImageResource(R.drawable.community_room)
+                    views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.community_room)
                 }
 
                 headerViews.roomProfileAliasView.setTextOrHide(it.canonicalAlias)

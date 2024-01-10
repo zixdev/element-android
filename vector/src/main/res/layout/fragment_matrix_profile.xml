@@ -69,35 +69,40 @@
                         tools:alpha="1"
                         tools:ignore="MissingConstraints" />
 
+
                     <im.vector.app.core.ui.views.ShieldImageView
-                        android:id="@+id/communityRoomDecorationToolbarImageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintBottom_toBottomOf="@id/matrixProfileToolbarTitleView"
-                        app:layout_constraintEnd_toStartOf="@id/matrixProfileToolbarTitleView"
+                        android:id="@+id/tokenGatedDecorationToolbarImageView"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/matrixProfileToolbarTitleView"/>
+                        android:alpha="0"
+                        app:layout_constraintStart_toStartOf="@id/matrixProfileToolbarTitleView"
+                        app:layout_constraintTop_toTopOf="@id/matrixProfileToolbarTitleView"
+                        app:layout_constraintStart_toEndOf="@+id/matrixProfileToolbarAvatarImageView"
+                        tools:alpha="1"
+                        tools:ignore="MissingConstraints"
+                        />
+
 
                     <TextView
                         android:id="@+id/matrixProfileToolbarTitleView"
-                        android:layout_width="260dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:alpha="0"
                         android:ellipsize="end"
+                        android:gravity="center"
                         android:maxLines="1"
                         android:textAppearance="@style/TextAppearance.Vector.Widget.ActionBarTitle"
                         android:textColor="?vctr_content_primary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/communityRoomDecorationToolbarImageView"
+                        app:layout_constraintStart_toEndOf="@+id/matrixProfileToolbarAvatarImageView"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:alpha="1"
                         tools:text="@sample/rooms.json/data/name" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -44,6 +44,7 @@ import org.matrix.android.sdk.api.extensions.orFalse
 import org.matrix.android.sdk.api.session.room.model.RoomSummary
 import org.matrix.android.sdk.api.session.room.model.localecho.RoomLocalEcho
 import org.matrix.android.sdk.api.util.toMatrixItem
+import timber.log.Timber
 
 @EpoxyModelClass
 abstract class MergedRoomCreationItem : BasedMergedItem<MergedRoomCreationItem.Holder>(R.layout.item_timeline_event_base_noinfo) {
@@ -175,8 +176,14 @@ abstract class MergedRoomCreationItem : BasedMergedItem<MergedRoomCreationItem.H
     private fun bindCreationSummaryTile(holder: Holder) {
         val roomDisplayName = roomSummary?.displayName
         val membersCount = roomSummary?.otherMemberIds?.size ?: 0
+        if (roomDisplayName?.startsWith("[TG]") == true){
 
-        holder.roomNameText.setTextOrHide(roomDisplayName)
+            holder.roomNameText.setTextOrHide(roomDisplayName.substring(4))
+            holder.tokenGated.setImageResource(R.drawable.tokengated_room)
+        }else{
+            holder.roomNameText.setTextOrHide(roomDisplayName)
+        }
+
         renderRoomDescription(holder)
         renderRoomTopic(holder)
 
@@ -229,7 +236,12 @@ abstract class MergedRoomCreationItem : BasedMergedItem<MergedRoomCreationItem.H
                 holder.view.resources.getString(R.string.this_is_the_beginning_of_room_no_name)
             }
             else -> {
-                holder.view.resources.getString(R.string.this_is_the_beginning_of_room, roomDisplayName)
+                if (roomDisplayName.startsWith("[TG]")){
+                    holder.view.resources.getString(R.string.this_is_the_beginning_of_room, roomDisplayName.substring(4))
+                }else{
+                    holder.view.resources.getString(R.string.this_is_the_beginning_of_room, roomDisplayName)
+                }
+
             }
         }
         holder.roomDescriptionText.text = description
@@ -281,6 +293,7 @@ abstract class MergedRoomCreationItem : BasedMergedItem<MergedRoomCreationItem.H
         val roomAvatarImageView by bind<ImageView>(R.id.creationTileRoomAvatarImageView)
         val addPeopleButton by bind<View>(R.id.creationTileAddPeopleButton)
         val setAvatarButton by bind<View>(R.id.creationTileSetAvatarButton)
+        val tokenGated by bind<ImageView>(R.id.tokenGatedRoomDecorationImageView)
     }
 
     companion object {
