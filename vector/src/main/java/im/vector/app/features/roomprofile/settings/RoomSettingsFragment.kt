@@ -168,9 +168,18 @@ class RoomSettingsFragment :
         views.waitingView.root.isVisible = state.isLoading
 
         state.roomSummary()?.let {
-            views.roomSettingsToolbarTitleView.text = it.displayName
-            avatarRenderer.render(it.toMatrixItem(), views.roomSettingsToolbarAvatarImageView)
+            if (it.displayName.startsWith("[TG]")) {
+                views.roomSettingsToolbarTitleView.text = it.displayName.substring(4)
+                views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+
+            } else{
+                views.roomSettingsToolbarTitleView.text = it.displayName
+            }
+
             views.roomSettingsDecorationToolbarAvatarImageView.render(it.roomEncryptionTrustLevel)
+            avatarRenderer.render(it.toMatrixItem(), views.roomSettingsToolbarAvatarImageView)
+
+
         }
 
         invalidateOptionsMenu()

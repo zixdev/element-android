@@ -45,6 +45,18 @@
                     app:layout_constraintCircleAngle="135"
                     app:layout_constraintCircleRadius="20dp"
                     tools:ignore="MissingConstraints" />
+                <im.vector.app.core.ui.views.ShieldImageView
+                    android:id="@+id/tokenGatedDecorationToolbarImageView"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+
+                    app:layout_constraintStart_toStartOf="@id/roomSettingsToolbarTitleView"
+                    app:layout_constraintTop_toTopOf="@id/roomSettingsToolbarTitleView"
+                    app:layout_constraintStart_toEndOf="@+id/roomSettingsToolbarAvatarImageView"
+                    tools:alpha="1"
+                    tools:ignore="MissingConstraints"
+                    />
 
                 <TextView
                     android:id="@+id/roomSettingsToolbarTitleView"
@@ -53,6 +65,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:ellipsize="end"
+                    android:gravity="center"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.Vector.Widget.ActionBarTitle"
                     android:textColor="?vctr_content_primary"

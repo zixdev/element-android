@@ -121,7 +121,8 @@ class RoomProfileFragment :
                 listOf(
                         views.matrixProfileToolbarAvatarImageView,
                         views.matrixProfileToolbarTitleView,
-                        views.matrixProfileDecorationToolbarAvatarImageView
+                        views.matrixProfileDecorationToolbarAvatarImageView,
+                        views.tokenGatedDecorationToolbarImageView
                 )
         )
         views.matrixProfileAppBarLayout.addOnOffsetChangedListener(appBarStateChangeListener)
@@ -224,6 +225,22 @@ class RoomProfileFragment :
             } else {
                 headerViews.roomProfileNameView.text = it.displayName
                 views.matrixProfileToolbarTitleView.text = it.displayName
+
+                if (it.displayName.startsWith("[TG]")) {
+                    headerViews.roomProfileNameView.text = it.displayName.substring(4)
+                    views.matrixProfileToolbarTitleView.text = it.displayName.substring(4)
+                    
+                    headerViews.tokenGatedRoomDecorationImageView.setImageResource(R.drawable.tokengated_room)
+                    views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+                }
+
+                if (it.displayName.startsWith("$")) {
+                    headerViews.roomProfileNameView.text = it.displayName.substring(1)
+                    views.matrixProfileToolbarTitleView.text = it.displayName.substring(1)
+                    headerViews.communityRoomDecorationImageView.setImageResource(R.drawable.community_room)
+                    views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.community_room)
+                }
+
                 headerViews.roomProfileAliasView.setTextOrHide(it.canonicalAlias)
                 val matrixItem = it.toMatrixItem()
                 avatarRenderer.render(matrixItem, headerViews.roomProfileAvatarView)

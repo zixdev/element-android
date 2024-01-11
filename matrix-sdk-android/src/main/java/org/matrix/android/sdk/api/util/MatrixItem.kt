@@ -188,7 +188,13 @@ fun User.toMatrixItem() = MatrixItem.UserItem(userId, displayName, avatarUrl)
 fun RoomSummary.toMatrixItem() = if (roomType == RoomType.SPACE) {
     MatrixItem.SpaceItem(roomId, displayName, avatarUrl)
 } else {
-    MatrixItem.RoomItem(roomId, displayName, avatarUrl)
+    if(displayName.startsWith("[TG]")){
+        MatrixItem.RoomItem(roomId, displayName.substring(5), avatarUrl)
+
+    }else{
+        MatrixItem.RoomItem(roomId, displayName, avatarUrl)
+    }
+
 }
 
 fun RoomSummary.toRoomAliasMatrixItem() = MatrixItem.RoomAliasItem(canonicalAlias ?: roomId, displayName, avatarUrl)

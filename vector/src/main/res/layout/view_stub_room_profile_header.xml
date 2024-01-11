@@ -61,6 +61,41 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/roomProfileNameView"/>
+    <im.vector.app.core.ui.views.ShieldImageView
+        android:id="@+id/verifiedUserDecorationImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/roomProfileNameView"
+        app:layout_constraintEnd_toStartOf="@id/roomProfileNameView"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/roomProfileNameView"/>
+    <im.vector.app.core.ui.views.ShieldImageView
+        android:id="@+id/tokenGatedRoomDecorationImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/roomProfileNameView"
+        app:layout_constraintEnd_toStartOf="@id/roomProfileNameView"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/roomProfileNameView"/>
+    <im.vector.app.core.ui.views.ShieldImageView
+        android:id="@+id/communityRoomDecorationImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/roomProfileNameView"
+        app:layout_constraintEnd_toStartOf="@id/roomProfileNameView"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/roomProfileNameView"/>
+
+
 
     <TextView
         android:id="@+id/roomProfileNameView"

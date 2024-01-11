@@ -62,11 +62,24 @@
             app:layout_constraintCircleRadius="34dp"
             tools:ignore="MissingConstraints" />
 
+        <im.vector.app.core.ui.views.ShieldImageView
+            android:id="@+id/tokenGatedRoomDecorationImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/roomNameTileText"
+            app:layout_constraintEnd_toStartOf="@id/roomNameTileText"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/roomNameTileText"/>
+
         <TextView
             android:id="@+id/roomNameTileText"
             style="@style/Widget.Vector.TextView.Title"
-            android:layout_width="match_parent"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
+
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:textColor="?vctr_content_primary"

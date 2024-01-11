@@ -1243,6 +1243,7 @@ class TimelineFragment :
                     avatarRenderer.render(matrixItem, views.includeThreadToolbar.roomToolbarThreadImageView)
                     views.includeThreadToolbar.roomToolbarThreadShieldImageView.render(it.roomEncryptionTrustLevel)
                     views.includeThreadToolbar.roomToolbarThreadSubtitleTextView.text = it.displayName
+
                 }
                 views.includeThreadToolbar.roomToolbarThreadTitleTextView.text = resources.getText(R.string.thread_timeline_title)
             }
@@ -1253,7 +1254,14 @@ class TimelineFragment :
                     views.includeRoomToolbar.roomToolbarContentView.isClickable = false
                 } else {
                     views.includeRoomToolbar.roomToolbarContentView.isClickable = roomSummary.membership == Membership.JOIN
-                    views.includeRoomToolbar.roomToolbarTitleView.text = roomSummary.displayName
+                    if(roomSummary.displayName.startsWith("[TG]")){
+                        views.includeRoomToolbar.roomToolbarTitleView.text = roomSummary.displayName.substring(4)
+
+                        views.includeRoomToolbar.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+
+                    }else{
+                        views.includeRoomToolbar.roomToolbarTitleView.text = roomSummary.displayName
+                    }
                     avatarRenderer.render(roomSummary.toMatrixItem(), views.includeRoomToolbar.roomToolbarAvatarImageView)
                     val showPresence = roomSummary.isDirect
                     views.includeRoomToolbar.roomToolbarPresenceImageView.render(showPresence, roomSummary.directUserPresence)

@@ -101,7 +101,13 @@ class RoomNotificationSettingsFragment :
 
     private fun renderRoomSummary(state: RoomNotificationSettingsViewState) {
         state.roomSummary()?.let {
-            views.roomSettingsToolbarTitleView.text = it.displayName
+            if (it.displayName.startsWith("[TG]")) {
+                views.roomSettingsToolbarTitleView.text = it.displayName.substring(4)
+                views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+
+            } else{
+                views.roomSettingsToolbarTitleView.text = it.displayName
+            }
             avatarRenderer.render(it.toMatrixItem(), views.roomSettingsToolbarAvatarImageView)
             views.roomSettingsDecorationToolbarAvatarImageView.render(it.roomEncryptionTrustLevel)
         }

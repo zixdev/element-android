@@ -41,6 +41,7 @@ import im.vector.app.features.roomprofile.RoomProfileArgs
 import im.vector.lib.core.utils.timer.Clock
 import kotlinx.coroutines.launch
 import org.matrix.android.sdk.api.util.toMatrixItem
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -114,7 +115,13 @@ class RoomUploadsFragment :
 
     private fun renderRoomSummary(state: RoomUploadsViewState) {
         state.roomSummary()?.let {
-            views.roomUploadsToolbarTitleView.text = it.displayName
+            if (it.displayName.startsWith("[TG]")){
+                views.roomUploadsToolbarTitleView.text = it.displayName.substring(4)
+                views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+            }else{
+                views.roomUploadsToolbarTitleView.text = it.displayName
+
+            }
             views.roomUploadsDecorationToolbarAvatarImageView.render(it.roomEncryptionTrustLevel)
             avatarRenderer.render(it.toMatrixItem(), views.roomUploadsToolbarAvatarImageView)
         }

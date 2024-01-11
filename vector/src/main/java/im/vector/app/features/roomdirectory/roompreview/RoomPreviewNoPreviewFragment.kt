@@ -48,6 +48,7 @@ import im.vector.app.features.themes.ThemeUtils
 import me.gujun.android.span.span
 import org.matrix.android.sdk.api.session.room.model.RoomType
 import org.matrix.android.sdk.api.util.MatrixItem
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -198,6 +199,7 @@ class RoomPreviewNoPreviewFragment :
             views.roomPreviewNoPreviewToolbarAvatar.isVisible = false
             views.roomPreviewNoPreviewAvatar.isVisible = false
         }
+        Timber.w("Display Name in Preview No Preview Fragment ${roomName}")
         views.roomPreviewNoPreviewToolbarTitle.text = roomName
 
         // Screen

@@ -46,6 +46,7 @@ import org.matrix.android.sdk.api.session.room.alias.RoomAliasError
 import org.matrix.android.sdk.api.session.room.model.RoomDirectoryVisibility
 import org.matrix.android.sdk.api.util.toMatrixItem
 import javax.inject.Inject
+import timber.log.Timber
 
 @AndroidEntryPoint
 class RoomAliasFragment :
@@ -133,7 +134,13 @@ class RoomAliasFragment :
 
     private fun renderRoomSummary(state: RoomAliasViewState) {
         state.roomSummary()?.let {
-            views.roomSettingsToolbarTitleView.text = it.displayName
+            if (it.displayName.startsWith("[TG]")){
+                views.roomSettingsToolbarTitleView.text = it.displayName.substring(4)
+                views.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+            }else{
+                views.roomSettingsToolbarTitleView.text = it.displayName
+
+            }
             avatarRenderer.render(it.toMatrixItem(), views.roomSettingsToolbarAvatarImageView)
             views.roomSettingsDecorationToolbarAvatarImageView.render(it.roomEncryptionTrustLevel)
         }

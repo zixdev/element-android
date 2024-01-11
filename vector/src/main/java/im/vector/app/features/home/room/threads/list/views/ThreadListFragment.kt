@@ -212,7 +212,12 @@ class ThreadListFragment :
         avatarRenderer.render(matrixItem, views.includeThreadListToolbar.roomToolbarThreadImageView)
         views.includeThreadListToolbar.roomToolbarThreadShieldImageView.render(threadListArgs.roomEncryptionTrustLevel)
         views.includeThreadListToolbar.roomToolbarThreadTitleTextView.text = resources.getText(R.string.thread_list_title)
-        views.includeThreadListToolbar.roomToolbarThreadSubtitleTextView.text = threadListArgs.displayName
+        if(threadListArgs.displayName?.startsWith("[TG]") == true){
+            views.includeThreadListToolbar.roomToolbarThreadSubtitleTextView.text = threadListArgs.displayName?.substring(4)
+            views.includeThreadListToolbar.tokenGatedDecorationToolbarImageView.setImageResource(R.drawable.tokengated_room)
+        }else{
+            views.includeThreadListToolbar.roomToolbarThreadSubtitleTextView.text = threadListArgs.displayName
+        }
     }
 
     override fun onThreadSummaryClicked(threadSummary: ThreadSummary) {

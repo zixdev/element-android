@@ -46,6 +46,7 @@ class CommandParser @Inject constructor(
         return if (!message.startsWith("/")) {
             ParsedCommand.ErrorNotACommand
         } else {
+            
             // "/" only
             if (message.length == 1) {
                 return ParsedCommand.ErrorEmptySlashCommand
@@ -411,8 +412,10 @@ class CommandParser @Inject constructor(
                     throw RuntimeException("Application crashed from user demand")
                 }
                 else -> {
+                    
                     // Unknown command
-                    ParsedCommand.ErrorUnknownSlashCommand(slashCommand)
+                    ParsedCommand.ErrorNotACommand
+                     //ParsedCommand.ErrorUnknownSlashCommand(slashCommand)
                 }
             }
         }
